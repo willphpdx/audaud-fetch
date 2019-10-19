@@ -28,5 +28,6 @@ OR
 
 ```
 $ ./package
-$ <slugs.txt xargs -L 1 ./aa-fetch --slug 
+$ cd work
+$ <slugs.txt xargs -L 1 ../build/aa-fetch --slug
 ```
