@@ -23,3 +23,10 @@ OR
 $ ./package
 $ build/aa-fetch --slug SLUG
 ```
+
+OR
+
+```
+$ ./package
+$ <slugs.txt xargs -L 1 aa-fetch --slug 
+```
