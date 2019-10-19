@@ -1,0 +1,3 @@
+#!/bin/bash
+# Must have the latest version tagged at HEAD with the pattern V.M.N
+pkg -t node12-macos -o build/aa-fetch aa-fetch.js
