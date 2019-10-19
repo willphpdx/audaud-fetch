@@ -28,5 +28,5 @@ OR
 
 ```
 $ ./package
-$ <slugs.txt xargs -L 1 aa-fetch --slug 
+$ <slugs.txt xargs -L 1 ./aa-fetch --slug 
 ```
