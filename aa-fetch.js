@@ -1,5 +1,9 @@
 /*
-BASH Usage: <LemcoSlugs01.txt xargs -L 1 node aa-fetch.js --slug
+BASH Usage:
+<slugs.txt xargs -L 1 node aa-fetch.js --slug
+
+brew install parallel
+cat slugs.txt | parallel -I% --max-args 1 aa-fetch --slug %
 */
 
 
