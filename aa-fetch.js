@@ -56,5 +56,4 @@ fetch(url)
         .then(err => {
           process.exit(0)
         })
-      //console.log(article)
       });
