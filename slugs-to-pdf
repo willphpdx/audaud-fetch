@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat $1 | parallel -I% --max-args 1 ../bin/aa-fetch --slug %
+cat $1 | parallel -I% --max-args 1 ../bin/jsreport render  --template.engine=none --template.recipe=chrome-pdf --template.content=html/%.html --out=pdf/%.pdf

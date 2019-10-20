@@ -11,7 +11,6 @@ const package = require('./package.json')
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 const fs = require('fs');
-const pdf = require('html-pdf');
 
 const args = require('yargs')
   .usage("Usage: $0 --slug SLUG")
@@ -35,15 +34,6 @@ const writeHtml = function(slug, article) {
       err && console.log(err);
       resolve()
     })
-  })
-}
-
-const writePdf = function(slug, article) {
-  return new Promise(resolve => {
-    pdf.create(article,{ format: 'Letter' }).toFile(`pdf/${slug}.pdf`, (err, res) => {
-      err && console.log(err);
-      resolve()
-    });
   })
 }
 
@@ -73,8 +63,7 @@ fetch(url)
 
       const articleHtml = `<body>${JQSCRIPT}${contentArea.html()}${PGBREAK}</body>`
       const p1 = writeHtml(slug, articleHtml);
-      const p2 = writePdf(slug, articleHtml)
-      Promise.all([p1, p2]).then(res => {
+      Promise.all([p1]).then(res => {
         process.exit(0)
       })
     });

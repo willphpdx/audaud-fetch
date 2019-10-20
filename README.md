@@ -38,3 +38,12 @@ OR
 brew install parallel
 cat slugs.txt | parallel -I% --max-args 1 aa-fetch --slug %
 ```
+
+OR
+
+```
+./package
+...
+tar xzf slugs-to-pdf.tar.gz
+bin/slugs-to-pdf slugs.txt
+```

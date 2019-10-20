@@ -1,6 +1,6 @@
 node_modules/
 work/
-build/
+bin/
 package-lock.json
+slugs-to-pdf.tar.gz
 .DS_Store
-

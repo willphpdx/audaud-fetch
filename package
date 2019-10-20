@@ -1,3 +1,14 @@
 #!/bin/bash
 # Must have the latest version tagged at HEAD with the pattern V.M.N
-pkg -t node12-macos -o build/aa-fetch aa-fetch.js
+mkdir bin
+
+cp slugs-to-pdf ./bin
+
+pkg -t node12-macos -o bin/aa-fetch aa-fetch.js
+
+curl -L "https://github.com/jsreport/jsreport/releases/download/2.6.1/jsreport-osx.tar.gz" > /tmp/jsreport.tar.gz
+cd bin
+tar xzf /tmp/jsreport.tar.gz
+cd ..
+
+tar czf slugs-to-pdf.tar.gz bin/*
