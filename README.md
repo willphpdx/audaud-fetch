@@ -36,5 +36,5 @@ OR
 
 ```
 brew install parallel
-cat LemcoSlugs01.txt | parallel -I% --max-args 1 aa-fetch --slug %
+cat slugs.txt | parallel -I% --max-args 1 aa-fetch --slug %
 ```
