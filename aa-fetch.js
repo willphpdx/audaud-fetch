@@ -4,9 +4,8 @@ BASH Usage: <LemcoSlugs01.txt xargs -L 1 node aa-fetch.js --slug
 
 
 const package = require('./package.json')
-const HTMLParser = require('node-html-parser');
+const cheerio = require('cheerio');
 const fetch = require('node-fetch');
-const Url = require('url-parse');
 const fs = require('fs');
 
 const args = require('yargs')
@@ -23,7 +22,7 @@ const args = require('yargs')
   .version(package.version)
   .argv
 
-const url = new Url(`https://www.audaud.com/${args.slug}/`)
+const url = `https://www.audaud.com/${args.slug}/`
 
 const writeArticle = function(slug, article) {
   return new Promise(resolve => {
@@ -38,9 +37,18 @@ console.log(`Fetching: ${url}`)
 fetch(url)
     .then(res => res.text())
     .then(body => {
-      const root = HTMLParser.parse(body);
-      const article = root.querySelector('#content-area').toString()
-      writeArticle(args.slug, article)
+
+      const $ = cheerio.load(body)
+      const contentArea = $('#content-area')
+
+      // Throw a bunch of filtering on the original content area to get rid of the fluff
+      contentArea.find('div.et-single-post-ad').remove()
+      contentArea.find('#sidebar').remove()
+      contentArea.find(contentArea.find('.et_post_meta_wrapper')[1]).remove()
+      contentArea.find('div.sharedaddy').remove()
+      contentArea.find('#jp-relatedposts').remove()
+
+      writeArticle(args.slug, contentArea.html())
         .then(err => {
           process.exit(0)
         })
