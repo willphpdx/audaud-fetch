@@ -31,3 +31,10 @@ $ ./package
 $ cd work
 $ <slugs.txt xargs -L 1 ../build/aa-fetch --slug
 ```
+
+OR
+
+```
+brew install parallel
+cat LemcoSlugs01.txt | parallel -I% --max-args 1 aa-fetch --slug %
+```
