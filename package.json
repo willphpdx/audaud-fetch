@@ -1,6 +1,6 @@
 {
   "name": "aa-parse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parses audaud articles from website.",
   "main": "aa-fetch.js",
   "scripts": {
